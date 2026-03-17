@@ -1,0 +1,27 @@
+{
+	"name": "23_set_variable",
+	"properties": {
+		"activities": [
+			{
+				"name": "get_file",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "filename",
+					"value": "ramdas"
+				}
+			}
+		],
+		"variables": {
+			"filename": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
