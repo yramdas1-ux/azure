@@ -10,7 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AmazonS3Location",
-				"bucketName": "ramdas143-bucket"
+				"bucketName": "ramdas143-bucket",
+				"fileName": "sales_data.csv"
 			}
 		}
 	},
