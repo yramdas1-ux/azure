@@ -1,0 +1,47 @@
+{
+	"name": "s3_AZURE",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AmazonS31",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AmazonS3Location",
+				"bucketName": "ramdas143-bucket"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "employee_id",
+				"type": "String"
+			},
+			{
+				"name": "department",
+				"type": "String"
+			},
+			{
+				"name": "job_role",
+				"type": "String"
+			},
+			{
+				"name": "salary",
+				"type": "String"
+			},
+			{
+				"name": "experience_years",
+				"type": "String"
+			},
+			{
+				"name": "performance_score",
+				"type": "String"
+			}
+		]
+	}
+}

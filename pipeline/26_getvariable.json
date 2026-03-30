@@ -1,0 +1,63 @@
+{
+	"name": "26_getvariable",
+	"properties": {
+		"activities": [
+			{
+				"name": "getname",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "person name",
+					"value": "ravi "
+				}
+			},
+			{
+				"name": "message",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "getname",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "mess",
+					"value": {
+						"value": "@concat('my name is ',variables('person name'),'age is ',variables('age'),'location was ',variables('location'))",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"person name": {
+				"type": "String",
+				"defaultValue": "ramdas "
+			},
+			"age": {
+				"type": "String",
+				"defaultValue": "30 "
+			},
+			"location": {
+				"type": "String",
+				"defaultValue": "hyderabad "
+			},
+			"mess": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}
