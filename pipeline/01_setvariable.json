@@ -1,0 +1,102 @@
+{
+	"name": "01_setvariable",
+	"properties": {
+		"activities": [
+			{
+				"name": "getfilename",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "preson_name",
+					"value": "ramdas"
+				}
+			},
+			{
+				"name": "message",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "getfilename",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "getage",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "getlocation",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "messgae",
+					"value": {
+						"value": "@concat('my name is ',variables('preson_name'), 'my age is ',variables('pr_age'),'location',variables('pr_location') )",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "getage",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "pr_age",
+					"value": "30"
+				}
+			},
+			{
+				"name": "getlocation",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "pr_location",
+					"value": "hyderabad"
+				}
+			}
+		],
+		"variables": {
+			"preson_name": {
+				"type": "String"
+			},
+			"pr_age": {
+				"type": "String"
+			},
+			"pr_location": {
+				"type": "String"
+			},
+			"messgae": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2026-03-25T05:27:42Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

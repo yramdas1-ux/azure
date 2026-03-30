@@ -1,0 +1,155 @@
+{
+	"name": "03_setvariable",
+	"properties": {
+		"activities": [
+			{
+				"name": "get_name",
+				"description": "Ramdas",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "person_name",
+					"value": "ramdas"
+				}
+			},
+			{
+				"name": "output",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "arear",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "location",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "get_name",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "current time",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					},
+					{
+						"activity": "age",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "output",
+					"value": {
+						"value": "@concat('My name is ',variables('person_name'),'**','and my age was ',variables('person_age'),'**','and my location was',variables('person_location'),'**','and my arear was ','**',variables('person_arear'),'**','present time was ',variables('current time'))",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "arear",
+				"description": "",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "person_arear",
+					"value": "near pragati nagar PIN code 500090"
+				}
+			},
+			{
+				"name": "age",
+				"description": "30",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "person_age",
+					"value": "30"
+				}
+			},
+			{
+				"name": "location",
+				"description": "hyderabad",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "person_location",
+					"value": "hyderabad "
+				}
+			},
+			{
+				"name": "current time",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "current time",
+					"value": {
+						"value": "@formatDateTime(utcNow(),'ddMMyyyy')",
+						"type": "Expression"
+					}
+				}
+			}
+		],
+		"variables": {
+			"person_name": {
+				"type": "String"
+			},
+			"person_age": {
+				"type": "String"
+			},
+			"person_location": {
+				"type": "String"
+			},
+			"person_arear": {
+				"type": "String"
+			},
+			"current time": {
+				"type": "String"
+			},
+			"output": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2026-03-27T06:30:48Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

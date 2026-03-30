@@ -1,0 +1,89 @@
+{
+	"name": "08_currentdatecopy",
+	"properties": {
+		"activities": [
+			{
+				"name": "current_date",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "getafilename",
+					"value": {
+						"value": "@concat('orders_',formatDateTime(utcNow(),'ddMMyyy'),'.csv')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "current_date",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "BinarySource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "BinaryReadSettings"
+						}
+					},
+					"sink": {
+						"type": "BinarySink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "dataset_gn2_p",
+						"type": "DatasetReference",
+						"parameters": {
+							"file_name": {
+								"value": "@variables('getafilename')",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "gen2_outbound_binary",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"variables": {
+			"getafilename": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2026-03-27T08:44:39Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

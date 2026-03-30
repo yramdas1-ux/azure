@@ -1,0 +1,20 @@
+{
+	"name": "Snowflake1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SnowflakeV2",
+		"typeProperties": {
+			"authenticationType": "Basic",
+			"accountIdentifier": "dj47613",
+			"user": "ramdas",
+			"database": "RAMDAS",
+			"warehouse": "COMPUTE_WH",
+			"role": "ACCOUNTADMIN",
+			"host": "dj47613.ap-southeast-1.snowflakecomputing.com",
+			"useUtcTimestamps": false,
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDgxREUwOTc4LTZGNDctNERGNi05MkE0LUZBNTQyRkUzQzBCNV9lNTc5NTk5Yy1jZDhmLTRmYTgtYTk1NC1iOTMyMGM4MjhlMTMiDQp9"
+		},
+		"version": "1.1"
+	}
+}
