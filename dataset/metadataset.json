@@ -2,7 +2,7 @@
 	"name": "metadataset",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "linked_service_test",
+			"referenceName": "AzureDataLakeStorage_updated",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
@@ -10,8 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "inbounds",
-				"fileSystem": "devcontiner"
+				"folderPath": "inbound",
+				"fileSystem": "devcontainer"
 			}
 		}
 	},
