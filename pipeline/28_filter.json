@@ -1,5 +1,5 @@
 {
-	"name": "pipeline1",
+	"name": "28_filter",
 	"properties": {
 		"activities": [
 			{
@@ -16,12 +16,14 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "AWS_s3",
+						"referenceName": "metadataset",
 						"type": "DatasetReference"
 					},
-					"fieldList": [],
+					"fieldList": [
+						"childItems"
+					],
 					"storeSettings": {
-						"type": "AmazonS3ReadSettings",
+						"type": "AzureBlobFSReadSettings",
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {
