@@ -1,0 +1,89 @@
+{
+	"name": "09_previous_date_copy",
+	"properties": {
+		"activities": [
+			{
+				"name": "previousdate",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "previous_date",
+					"value": {
+						"value": "@concat('orders_',formatDateTime(adddays(utcNow(),-1),'ddMMyyyy'),'.csv')\r\n\r\n",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "previousdate",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "BinarySource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "BinaryReadSettings"
+						}
+					},
+					"sink": {
+						"type": "BinarySink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "dataset_gn2_p",
+						"type": "DatasetReference",
+						"parameters": {
+							"file_name": {
+								"value": "@variables('previous_date')",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "gen2_outbound_binary",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"variables": {
+			"previous_date": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2026-03-27T09:33:13Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
